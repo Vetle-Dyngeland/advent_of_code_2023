@@ -11,8 +11,14 @@ const WORD_DIGIT_PAIRS: [(&str, u8); 9] = [
 ];
 
 pub fn run() {
+    println!("\n--- DAY 1 ---");
+
+    super::solve_and_time("Part 2: ", solve);
+}
+
+fn solve() -> String {
     let lines = get_lines("./input_files/day1.txt");
-    let sum: u32 = lines
+    lines
         .iter()
         .map(|line| {
             let left_digit = (0..line.len()).find_map(|i| {
@@ -41,8 +47,8 @@ pub fn run() {
             });
             (10 * left_digit.unwrap() + right_digit.unwrap()) as u32
         })
-        .sum();
-    println!("{sum}")
+        .sum::<u32>()
+        .to_string()
 }
 
 fn get_lines(filename: &str) -> Vec<String> {
